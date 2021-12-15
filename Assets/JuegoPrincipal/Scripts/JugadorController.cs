@@ -6,21 +6,20 @@ using UnityEngine;
 public class JugadorController : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private float velocidad = 1000f;
-    public Camera camara;
-
 
     private float driftFactor = 0.1f;
     private float acelerationFactor = 1000f;
-    public float turnFactor = 20f;
+    public float turnFactor = 1.0f;
 
     private float acelerationInput = 0;
     private float steeringInput = 0;
 
     private float rotationAngle = 0;
 
+
     private void Start()
     {
+        Application.targetFrameRate = 60;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -31,6 +30,9 @@ public class JugadorController : MonoBehaviour
         vector2.y = Input.GetAxis("Vertical");
 
         SetInputVector(vector2);
+
+        // Velocidad del vehiculo (dirigida hacia adelante)
+        var forwardVelocity = (transform.up * _rb.velocity).magnitude;
     }
 
     private void ApplyEngineForce()
@@ -38,7 +40,7 @@ public class JugadorController : MonoBehaviour
         // Friccion
         if (acelerationInput == 0)
         {
-            _rb.drag = Mathf.Lerp(_rb.drag, 2.0f, Time.fixedDeltaTime * 3);
+            _rb.drag = Mathf.Lerp(_rb.drag, 2.0f, Time.fixedDeltaTime * 2);
         }
         else
         {
@@ -48,9 +50,9 @@ public class JugadorController : MonoBehaviour
         // Hacer que el frenado sea mas fuerte
         if (acelerationInput < 0)
         {
-            acelerationInput *= 2;
+            acelerationInput *= 3f;
         }
-        
+
         // Fuerza del motor
         var fuerza = transform.up * acelerationInput * acelerationFactor * Time.deltaTime;
 
@@ -62,6 +64,15 @@ public class JugadorController : MonoBehaviour
         // Evitar rotacion si el vehiculo no avanza
         var minSpeed = _rb.velocity.magnitude / 8;
         minSpeed = Mathf.Clamp01(minSpeed);
+
+        // Hacer que el vehiculo gire menos al inicio, pero luego gire mas.
+        if (steeringInput == 0 && turnFactor >= 1.0f)
+        {
+            turnFactor -= 0.01f;
+        } else if (steeringInput != 0 && turnFactor <= 1.5f)
+        {
+            turnFactor += 0.01f;
+        }
 
         rotationAngle -= steeringInput * turnFactor * minSpeed;
 
