@@ -31,12 +31,22 @@ public class JugadorController : MonoBehaviour
 
         SetInputVector(vector2);
 
-        // Velocidad del vehiculo (dirigida hacia adelante)
+        // Velocidad del vehiculo (en cualquier sentido)
         var forwardVelocity = (transform.up * _rb.velocity).magnitude;
     }
 
     private void ApplyEngineForce()
     {
+        // Si la velocidad del auto es negativa, detenerlo
+        // TODO: Modo retroceso
+        var forwardVelocity = transform.up * _rb.velocity;
+        var esMovimientoHaciaAdelante = forwardVelocity.x > 0 || forwardVelocity.y > 0;
+        if (acelerationInput <= 0 && !esMovimientoHaciaAdelante)
+        {
+            _rb.velocity = Vector2.zero;
+            return;
+        }
+
         // Friccion
         if (acelerationInput == 0)
         {
@@ -69,7 +79,8 @@ public class JugadorController : MonoBehaviour
         if (steeringInput == 0 && turnFactor >= 1.0f)
         {
             turnFactor -= 0.01f;
-        } else if (steeringInput != 0 && turnFactor <= 1.5f)
+        }
+        else if (steeringInput != 0 && turnFactor <= 1.5f)
         {
             turnFactor += 0.01f;
         }
