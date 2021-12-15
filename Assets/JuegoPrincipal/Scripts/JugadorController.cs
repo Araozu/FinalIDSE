@@ -16,7 +16,6 @@ public class JugadorController : MonoBehaviour
 
     private float rotationAngle = 0;
 
-
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -109,5 +108,18 @@ public class JugadorController : MonoBehaviour
         ApplyEngineForce();
         RemoveOrthogonalForces();
         ApplySteering();
+    }
+
+    /**
+     * Devuelve la velocidad del vehiculo en km/h, positivo si va hacia adalente,
+     * negativo si va hacia atras
+     */
+    public float GetVelocity()
+    {
+        var velocidadAdelante = transform.up * _rb.velocity;
+        var esMovimientoHaciaAdelante = velocidadAdelante.x > 0 || velocidadAdelante.y > 0;
+        var magnitudVelocidad = velocidadAdelante.magnitude * 2.5f;
+
+        return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
     }
 }
