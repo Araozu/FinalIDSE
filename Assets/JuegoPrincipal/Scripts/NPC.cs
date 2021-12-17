@@ -7,7 +7,7 @@ namespace JuegoPrincipal.Scripts
     {
         private float driftFactor = 0.1f;
         private float acelerationFactor = 750f;
-        public float turnFactor = 1.0f;
+        private float turnFactor = 1.0f;
 
         private float acelerationInput = 1;
         private float steeringInput = 0;
@@ -31,10 +31,20 @@ namespace JuegoPrincipal.Scripts
         // Acelera o frena
         private void Acelerar()
         {
-            if (GetVelocity() > 50) return;
-            
+            var velocity = GetVelocity();
+            if (velocity > 50) return;
+
+            if (acelerationInput <= 0 && velocity < 0.1)
+            {
+                _rb.velocity = Vector2.zero;
+                return;
+            }
+
+            // Hacer que el frenado sea mas fuerte
+            var nuevaAceleracion = acelerationInput < 0 ? acelerationInput * 3 : acelerationInput;
+
             // Fuerza del motor
-            var fuerza = transform.up * acelerationInput * acelerationFactor * Time.deltaTime;
+            var fuerza = transform.up * nuevaAceleracion * acelerationFactor * Time.deltaTime;
             _rb.AddForce(fuerza, ForceMode2D.Force);
         }
 
@@ -57,6 +67,14 @@ namespace JuegoPrincipal.Scripts
             var magnitudVelocidad = velocidadAdelante.magnitude * 2.5f;
 
             return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
+        }
+
+        internal void Frenar()
+        {
+            if (acelerationInput >= -1)
+            {
+                acelerationInput = -1;
+            }
         }
     }
 }
