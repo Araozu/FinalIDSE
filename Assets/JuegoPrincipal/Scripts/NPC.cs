@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -15,14 +16,10 @@ namespace JuegoPrincipal.Scripts
     {
         private Estado _estado = Estado.Acelerando;
 
-        private float driftFactor = 0.0f;
-        private float acelerationFactor = 750f;
-        private float turnFactor = 1.0f;
-
-        private float acelerationInput = 1;
+        private const float AcelerationFactor = 750f;
         private float steeringInput = 0;
 
-        private float rotationAngle = 0;
+        private bool _desactivarMovimiento = false;
 
         // Define con cuanta fuerza frenar.
         // Cambia segun la distancia con el objeto al frente.
@@ -38,6 +35,8 @@ namespace JuegoPrincipal.Scripts
         // Update is called once per frame
         private void Update()
         {
+            if (_desactivarMovimiento) return;
+
             switch (_estado)
             {
                 case Estado.Acelerando when Velocidad() < 40:
@@ -45,7 +44,7 @@ namespace JuegoPrincipal.Scripts
                     RemoveOrthogonalForces();
                     break;
                 case Estado.Frenando:
-                    Frenar1();
+                    Frenar();
                     RemoveOrthogonalForces();
                     break;
                 case Estado.Reposo:
@@ -54,24 +53,20 @@ namespace JuegoPrincipal.Scripts
             }
         }
 
-        // Acelera o frena
         private void Acelerar()
         {
-            // Fuerza del motor
-            var fuerza = 0.5f * transform.up * acelerationFactor * Time.deltaTime;
+            var fuerza = 0.5f * transform.up * AcelerationFactor * Time.deltaTime;
             _rb.AddForce(fuerza, ForceMode2D.Force);
         }
 
-        private void Frenar1()
+        private void Frenar()
         {
-            // Fuerza del motor
-            var fuerza = transform.up * -_fuerzaFreno * acelerationFactor * Time.deltaTime;
+            var fuerza = transform.up * -_fuerzaFreno * AcelerationFactor * Time.deltaTime;
             _rb.AddForce(fuerza, ForceMode2D.Force);
 
             // Al terminar de frenar establecer el estado a reposo
             if (_rb.velocity.magnitude < 0.5)
             {
-                Debug.Log("Reposo!!!");
                 _estado = Estado.Reposo;
             }
         }
@@ -81,7 +76,8 @@ namespace JuegoPrincipal.Scripts
             var forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
             var rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
 
-            _rb.velocity = forwardVelocity + rightVelocity * driftFactor;
+            // forward + right * driftFactor
+            _rb.velocity = forwardVelocity + rightVelocity * 0.1f;
         }
 
         /**
@@ -108,13 +104,12 @@ namespace JuegoPrincipal.Scripts
                 _estado = Estado.Acelerando;
                 return;
             }
-            
+
             // TODO: Actualizar el estado aqui dependiendo de la colision
             var velocidad = Velocidad() / 10;
 
             if (velocidad <= 0.1)
             {
-                Debug.Log("Velocidad minima");
                 _rb.velocity = Vector2.zero;
                 _estado = Estado.Reposo;
                 return;
@@ -128,12 +123,42 @@ namespace JuegoPrincipal.Scripts
 
             // Sumar la velocidad actual / 10, para que si va muy rapido frene mas
             fuerzaFreno *= (velocidad - 10) / 10;
-            Debug.Log("Freno: " + fuerzaFreno);
 
             // TODO: Dejar de frenar segun la distancia
 
             _fuerzaFreno = math.abs(fuerzaFreno);
             _estado = Estado.Frenando;
+        }
+
+        private IEnumerator Desaparecer()
+        {
+            yield return new WaitForSeconds(3);
+            var component = GetComponent<SpriteRenderer>();
+
+            component.color = new Color(255, 255, 255, 0);
+            yield return new WaitForSeconds(0.3f);
+            component.color = new Color(255, 255, 255, 1);
+            yield return new WaitForSeconds(0.3f);
+
+            component.color = new Color(255, 255, 255, 0);
+            yield return new WaitForSeconds(0.3f);
+            component.color = new Color(255, 255, 255, 1);
+            yield return new WaitForSeconds(0.3f);
+            
+            component.color = new Color(255, 255, 255, 0);
+            yield return new WaitForSeconds(0.3f);
+            component.color = new Color(255, 255, 255, 1);
+            yield return new WaitForSeconds(0.3f);
+
+            GetComponentInChildren<NPCDetector>().Destruir();
+            Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter2D()
+        {
+            _rb.velocity = Vector2.zero;
+            _desactivarMovimiento = true;
+            StartCoroutine(Desaparecer());
         }
     }
 }
