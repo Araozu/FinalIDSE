@@ -1,11 +1,21 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace JuegoPrincipal.Scripts
 {
+    public enum Estado
+    {
+        Acelerando,
+        Frenando,
+        Reposo,
+    }
+
     public class NPC : MonoBehaviour
     {
-        private float driftFactor = 0.1f;
+        private Estado _estado = Estado.Acelerando;
+
+        private float driftFactor = 0.0f;
         private float acelerationFactor = 750f;
         private float turnFactor = 1.0f;
 
@@ -13,6 +23,10 @@ namespace JuegoPrincipal.Scripts
         private float steeringInput = 0;
 
         private float rotationAngle = 0;
+
+        // Define con cuanta fuerza frenar.
+        // Cambia segun la distancia con el objeto al frente.
+        private float _fuerzaFreno = 0;
 
         private Rigidbody2D _rb;
 
@@ -24,28 +38,43 @@ namespace JuegoPrincipal.Scripts
         // Update is called once per frame
         private void Update()
         {
-            Acelerar();
-            RemoveOrthogonalForces();
+            switch (_estado)
+            {
+                case Estado.Acelerando when Velocidad() < 50:
+                    Acelerar();
+                    RemoveOrthogonalForces();
+                    break;
+                case Estado.Frenando:
+                    Frenar1();
+                    RemoveOrthogonalForces();
+                    break;
+                case Estado.Reposo:
+                default:
+                    _rb.velocity = Vector2.zero;
+                    break;
+            }
         }
 
         // Acelera o frena
         private void Acelerar()
         {
-            var velocity = GetVelocity();
-            if (velocity > 50) return;
-
-            if (acelerationInput <= 0 && velocity < 0.1)
-            {
-                _rb.velocity = Vector2.zero;
-                return;
-            }
-
-            // Hacer que el frenado sea mas fuerte
-            var nuevaAceleracion = acelerationInput < 0 ? acelerationInput * 3 : acelerationInput;
-
             // Fuerza del motor
-            var fuerza = transform.up * nuevaAceleracion * acelerationFactor * Time.deltaTime;
+            var fuerza = transform.up * acelerationFactor * Time.deltaTime;
             _rb.AddForce(fuerza, ForceMode2D.Force);
+        }
+
+        private void Frenar1()
+        {
+            // Fuerza del motor
+            var fuerza = transform.up * -_fuerzaFreno * acelerationFactor * Time.deltaTime;
+            _rb.AddForce(fuerza, ForceMode2D.Force);
+
+            // Al terminar de frenar establecer el estado a reposo
+            if (_rb.velocity.magnitude < 0.5)
+            {
+                Debug.Log("Reposo!!!");
+                _estado = Estado.Reposo;
+            }
         }
 
         private void RemoveOrthogonalForces()
@@ -60,7 +89,7 @@ namespace JuegoPrincipal.Scripts
          * Devuelve la velocidad del vehiculo en km/h, positivo si va hacia adalente,
          * negativo si va hacia atras
          */
-        private float GetVelocity()
+        private float Velocidad()
         {
             var velocidadAdelante = transform.up * _rb.velocity;
             var esMovimientoHaciaAdelante = velocidadAdelante.x > 0 || velocidadAdelante.y > 0;
@@ -69,12 +98,33 @@ namespace JuegoPrincipal.Scripts
             return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
         }
 
-        internal void Frenar()
+        // Distancia entre el vehiculo adelante y este vehiculo
+        internal void Frenar(float distancia)
         {
-            if (acelerationInput >= -1)
+            var velocidad = Velocidad() / 10;
+
+            if (velocidad <= 0.1)
             {
-                acelerationInput = -1;
+                Debug.Log("Velocidad minima");
+                _rb.velocity = Vector2.zero;
+                _estado = Estado.Reposo;
+                return;
             }
+
+            var fuerzaFreno = 6 - distancia;
+            if (fuerzaFreno < 0)
+            {
+                fuerzaFreno = 0;
+            }
+
+            // Sumar la velocidad actual / 10, para que si va muy rapido frene mas
+            fuerzaFreno *= (velocidad - 10) / 10;
+            Debug.Log("Freno: " + fuerzaFreno);
+
+            // TODO: Dejar de frenar segun la distancia
+
+            _fuerzaFreno = math.abs(fuerzaFreno);
+            _estado = Estado.Frenando;
         }
     }
 }
