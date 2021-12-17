@@ -26,7 +26,7 @@ namespace JuegoPrincipal.Scripts
 
         // Define con cuanta fuerza frenar.
         // Cambia segun la distancia con el objeto al frente.
-        private float _fuerzaFreno = 0;
+        private float _fuerzaFreno;
 
         private Rigidbody2D _rb;
 
@@ -40,7 +40,7 @@ namespace JuegoPrincipal.Scripts
         {
             switch (_estado)
             {
-                case Estado.Acelerando when Velocidad() < 50:
+                case Estado.Acelerando when Velocidad() < 40:
                     Acelerar();
                     RemoveOrthogonalForces();
                     break;
@@ -49,7 +49,6 @@ namespace JuegoPrincipal.Scripts
                     RemoveOrthogonalForces();
                     break;
                 case Estado.Reposo:
-                default:
                     _rb.velocity = Vector2.zero;
                     break;
             }
@@ -59,7 +58,7 @@ namespace JuegoPrincipal.Scripts
         private void Acelerar()
         {
             // Fuerza del motor
-            var fuerza = transform.up * acelerationFactor * Time.deltaTime;
+            var fuerza = 0.5f * transform.up * acelerationFactor * Time.deltaTime;
             _rb.AddForce(fuerza, ForceMode2D.Force);
         }
 
@@ -98,9 +97,19 @@ namespace JuegoPrincipal.Scripts
             return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
         }
 
-        // Distancia entre el vehiculo adelante y este vehiculo
-        internal void Frenar(float distancia)
+        /**
+         * Informa al npc de la distancia entre este y otro vehiculo
+         * distancia: valor entre 5 y -1. -1 Indica que no hay ningun vehiculo cerca
+         */
+        internal void SetDistanciaColision(float distancia)
         {
+            if (distancia <= 0)
+            {
+                _estado = Estado.Acelerando;
+                return;
+            }
+            
+            // TODO: Actualizar el estado aqui dependiendo de la colision
             var velocidad = Velocidad() / 10;
 
             if (velocidad <= 0.1)
