@@ -47,14 +47,7 @@ public class JugadorController : MonoBehaviour
         }
 
         // Friccion
-        if (acelerationInput == 0)
-        {
-            _rb.drag = Mathf.Lerp(_rb.drag, 2.0f, Time.fixedDeltaTime * 2);
-        }
-        else
-        {
-            _rb.drag = 0;
-        }
+        _rb.drag = acelerationInput == 0 ? 0.5f : 0;
 
         // Hacer que el frenado sea mas fuerte
         if (acelerationInput < 0)
