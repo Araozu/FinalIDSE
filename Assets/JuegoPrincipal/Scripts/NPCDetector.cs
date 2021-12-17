@@ -18,11 +18,10 @@ namespace JuegoPrincipal.Scripts
         private void OnTriggerStay2D(Collider2D other)
         {
             // Solo detectar otros vehiculos y al jugador
-            if (other.CompareTag("Vehiculo") || other.CompareTag("Player"))
-            {
-                var distancia = other.Distance(_parentCollider).distance;
-                _npc.SetDistanciaColision(distancia);
-            }
+            if (!other.CompareTag("Vehiculo") && !other.CompareTag("Player")) return;
+
+            var distancia = other.Distance(_parentCollider).distance;
+            _npc.SetDistanciaColision(distancia);
         }
 
         private void OnTriggerExit2D(Collider2D other)

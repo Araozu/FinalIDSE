@@ -1,11 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JugadorController : MonoBehaviour
 {
     private Rigidbody2D _rb;
+    public Text velocidad;
 
     private float driftFactor = 0.1f;
     private float acelerationFactor = 1000f;
@@ -30,8 +33,7 @@ public class JugadorController : MonoBehaviour
 
         SetInputVector(vector2);
 
-        // Velocidad del vehiculo (en cualquier sentido)
-        var forwardVelocity = (transform.up * _rb.velocity).magnitude;
+        velocidad.text = math.floor(GetVelocity()) + " km/h";
     }
 
     private void ApplyEngineForce()
@@ -47,7 +49,7 @@ public class JugadorController : MonoBehaviour
         }
 
         // Friccion
-        _rb.drag = acelerationInput == 0 ? 0.5f : 0;
+        _rb.drag = acelerationInput == 0 ? 0.3f : 0;
 
         // Hacer que el frenado sea mas fuerte
         if (acelerationInput < 0)
