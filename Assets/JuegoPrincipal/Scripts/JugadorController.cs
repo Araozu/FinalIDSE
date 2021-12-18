@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class JugadorController : MonoBehaviour
@@ -103,11 +104,11 @@ public class JugadorController : MonoBehaviour
      * Devuelve la velocidad del vehiculo en km/h, positivo si va hacia adalente,
      * negativo si va hacia atras
      */
-    public float GetVelocity()
+    public float Velocidad()
     {
         var velocidadAdelante = transform.up * _rb.velocity;
         var esMovimientoHaciaAdelante = velocidadAdelante.x > 0 || velocidadAdelante.y > 0;
-        var magnitudVelocidad = velocidadAdelante.magnitude * 4f;
+        var magnitudVelocidad = math.floor(velocidadAdelante.magnitude * 4f);
 
         return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
     }

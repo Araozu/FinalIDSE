@@ -22,9 +22,9 @@ namespace JuegoPrincipal.Scripts
 
         private bool _desactivarMovimiento = false;
 
-        // Define con cuanta fuerza frenar.
+        // Define con cuanta fuerza acelerar o frenar.
         // Cambia segun la distancia con el objeto al frente.
-        private float _fuerzaFreno;
+        private float _fuerzaMotor = 0.5f;
 
         private Rigidbody2D _rb;
 
@@ -41,17 +41,22 @@ namespace JuegoPrincipal.Scripts
             switch (_estado)
             {
                 case Estado.Acelerando when Velocidad() < MaximaVelocidad:
-                    Acelerar();
+                    AplicarFuerzaMotor();
+                    // Acelerar();
                     RemoveOrthogonalForces();
                     break;
                 case Estado.Frenando:
-                    Frenar();
+                    AplicarFuerzaMotor();
+                    // Frenar();
                     RemoveOrthogonalForces();
                     break;
-                case Estado.Reposo:
-                    _rb.velocity = Vector2.zero;
-                    break;
             }
+        }
+
+        private void AplicarFuerzaMotor()
+        {
+            var fuerza = _fuerzaMotor * transform.up * AcelerationFactor * Time.deltaTime;
+            _rb.AddForce(fuerza, ForceMode2D.Force);
         }
 
         private void Acelerar()
@@ -62,7 +67,7 @@ namespace JuegoPrincipal.Scripts
 
         private void Frenar()
         {
-            var fuerza = transform.up * -_fuerzaFreno * AcelerationFactor * Time.deltaTime;
+            var fuerza = transform.up * -_fuerzaMotor * AcelerationFactor * Time.deltaTime;
             _rb.AddForce(fuerza, ForceMode2D.Force);
 
             // Al terminar de frenar establecer el estado a reposo
@@ -85,50 +90,77 @@ namespace JuegoPrincipal.Scripts
          * Devuelve la velocidad del vehiculo en km/h, positivo si va hacia adalente,
          * negativo si va hacia atras
          */
-        private float Velocidad()
+        public float Velocidad()
         {
             var velocidadAdelante = transform.up * _rb.velocity;
             var esMovimientoHaciaAdelante = velocidadAdelante.x > 0 || velocidadAdelante.y > 0;
-            var magnitudVelocidad = velocidadAdelante.magnitude * 4f;
+            var magnitudVelocidad = math.floor(velocidadAdelante.magnitude * 4f);
 
             return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
         }
 
         /**
          * Informa al npc de la distancia entre este y otro vehiculo
-         * distancia: valor entre 5 y -1. -1 Indica que no hay ningun vehiculo cerca
+         * distancia: valor positivo. Un valor mayor a 6 indica que no hay ningun vehiculo cerca
+         * velocidadOther: Velocidad del vehiculo delante
          */
-        internal void SetDistanciaColision(float distancia)
+        internal void SetDistanciaColision(float distancia, float velocidadOther)
         {
-            if (distancia <= 0)
+            var velocidad = Velocidad();
+            if (distancia >= 6)
             {
                 _estado = Estado.Acelerando;
-                return;
+                _fuerzaMotor = 0.5f;
             }
-
-            // TODO: Actualizar el estado aqui dependiendo de la colision
-            var velocidad = Velocidad() / 10;
-
-            if (velocidad <= 0.1)
+            // Frenar o acelerar dependiendo de la velocidad del vehiculo adelante
+            else if (distancia > 1 && distancia < 6)
             {
-                _rb.velocity = Vector2.zero;
-                _estado = Estado.Reposo;
-                return;
-            }
+                var diferenciaVelocidad = velocidadOther - velocidad;
 
-            var fuerzaFreno = 6 - distancia;
-            if (fuerzaFreno < 0)
+                // Si el vehiculo adelante va mas rapido que este, acelerar
+                if (diferenciaVelocidad > 0)
+                {
+                    _estado = Estado.Acelerando;
+                    _fuerzaMotor = 0.5f;
+                    return;
+                }
+
+                // Si va a la misma velocidad, no hacer nada
+                if (diferenciaVelocidad == 0)
+                {
+                    _estado = Estado.Reposo;
+                    _fuerzaMotor = 0;
+                    return;
+                }
+
+                // Sino frenar segun la distancia y velocidad
+                _estado = Estado.Frenando;
+                _fuerzaMotor = diferenciaVelocidad / 20;
+
+                // Para evitar retroceso, si este vehiculo tiene velocidad negativa,
+                // establecer velocidad a 0
+                if (velocidad <= 0.1)
+                {
+                    _rb.velocity = Vector2.zero;
+                    _estado = Estado.Reposo;
+                    return;
+                }
+            }
+            // Frenar en seco
+            else
             {
-                fuerzaFreno = 0;
+                _estado = Estado.Frenando;
+                _fuerzaMotor = -4;
+
+                // Para evitar retroceso, si este vehiculo tiene velocidad negativa,
+                // establecer velocidad a 0
+                if (velocidad <= 0.1)
+                {
+                    _rb.velocity = Vector2.zero;
+                    _estado = Estado.Reposo;
+                    return;
+                }
             }
-
-            // Sumar la velocidad actual / 10, para que si va muy rapido frene mas
-            fuerzaFreno *= (velocidad - 10) / 10;
-
-            // TODO: Dejar de frenar segun la distancia
-
-            _fuerzaFreno = math.abs(fuerzaFreno);
-            _estado = Estado.Frenando;
         }
 
         private IEnumerator Desaparecer()
@@ -145,7 +177,7 @@ namespace JuegoPrincipal.Scripts
             yield return new WaitForSeconds(0.3f);
             component.color = new Color(255, 255, 255, 1);
             yield return new WaitForSeconds(0.3f);
-            
+
             component.color = new Color(255, 255, 255, 0);
             yield return new WaitForSeconds(0.3f);
             component.color = new Color(255, 255, 255, 1);

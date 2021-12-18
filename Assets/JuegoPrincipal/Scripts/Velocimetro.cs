@@ -18,7 +18,7 @@ public class Velocimetro : MonoBehaviour
     private void Update()
     {
         // TODO: Actualizar la interfaz con la velocidad del jugador
-        var velocidadJugador = jugador.GetVelocity();
+        var velocidadJugador = jugador.Velocidad();
         _text.text = math.floor(velocidadJugador) + " km/h";
     }
 }

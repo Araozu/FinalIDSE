@@ -12,7 +12,7 @@ namespace JuegoPrincipal.Scripts
         private void Start()
         {
             _npc = GetComponentInParent<NPC>();
-            _parentCollider = transform.parent.GetComponent<BoxCollider2D>() ;
+            _parentCollider = transform.parent.GetComponent<BoxCollider2D>();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -20,16 +20,26 @@ namespace JuegoPrincipal.Scripts
             // Solo detectar otros vehiculos y al jugador
             if (!other.CompareTag("Vehiculo") && !other.CompareTag("Player")) return;
 
+            float otherVelocity;
+            if (other.CompareTag("Vehiculo"))
+            {
+                otherVelocity = other.GetComponent<NPC>().Velocidad();
+            }
+            else
+            {
+                otherVelocity = other.GetComponent<JugadorController>().Velocidad();
+            }
+
             var distancia = other.Distance(_parentCollider).distance;
-            _npc.SetDistanciaColision(distancia);
+            _npc.SetDistanciaColision(distancia, otherVelocity);
         }
- 
+
         private void OnTriggerExit2D(Collider2D other)
         {
             // Solo detectar otros vehiculos y al jugador
             if (other.CompareTag("Vehiculo") || other.CompareTag("Player"))
             {
-                _npc.SetDistanciaColision(-1);
+                _npc.SetDistanciaColision(6, 7);
             }
         }
 
