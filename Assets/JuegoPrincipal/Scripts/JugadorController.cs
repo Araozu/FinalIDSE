@@ -1,18 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class JugadorController : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    public Text velocidad;
 
     private float driftFactor = 0.1f;
     private float acelerationFactor = 750f;
-    public float turnFactor = 1.0f;
+    public float turnFactor = 0.5f;
 
     private float acelerationInput = 0;
     private float steeringInput = 0;
@@ -33,7 +27,7 @@ public class JugadorController : MonoBehaviour
 
         SetInputVector(vector2);
 
-        velocidad.text = math.floor(GetVelocity()) + " km/h";
+        
     }
 
     private void ApplyEngineForce()
@@ -70,11 +64,11 @@ public class JugadorController : MonoBehaviour
         minSpeed = Mathf.Clamp01(minSpeed);
 
         // Hacer que el vehiculo gire menos al inicio, pero luego gire mas.
-        if (steeringInput == 0 && turnFactor >= 1.0f)
+        if (steeringInput == 0 && turnFactor >= 0.5f)
         {
-            turnFactor -= 0.2f;
+            turnFactor -= 0.5f;
         }
-        else if (steeringInput != 0 && turnFactor <= 2.0f)
+        else if (steeringInput != 0 && turnFactor <= 2.5f)
         {
             turnFactor += 0.05f;
         }

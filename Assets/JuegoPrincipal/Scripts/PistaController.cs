@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,6 +8,8 @@ using UnityEngine;
  */
 public class PistaController : MonoBehaviour
 {
+    
+    
     private void OnTriggerStay2D(Collider2D other)
     {
         // Si la colision no es con el jugador retornar
