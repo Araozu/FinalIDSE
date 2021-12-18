@@ -17,6 +17,7 @@ namespace JuegoPrincipal.Scripts
         private Estado _estado = Estado.Acelerando;
 
         private const float AcelerationFactor = 750f;
+        private const int MaximaVelocidad = 30;
         private float steeringInput = 0;
 
         private bool _desactivarMovimiento = false;
@@ -39,7 +40,7 @@ namespace JuegoPrincipal.Scripts
 
             switch (_estado)
             {
-                case Estado.Acelerando when Velocidad() < 40:
+                case Estado.Acelerando when Velocidad() < MaximaVelocidad:
                     Acelerar();
                     RemoveOrthogonalForces();
                     break;
@@ -88,7 +89,7 @@ namespace JuegoPrincipal.Scripts
         {
             var velocidadAdelante = transform.up * _rb.velocity;
             var esMovimientoHaciaAdelante = velocidadAdelante.x > 0 || velocidadAdelante.y > 0;
-            var magnitudVelocidad = velocidadAdelante.magnitude * 2.5f;
+            var magnitudVelocidad = velocidadAdelante.magnitude * 4f;
 
             return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
         }

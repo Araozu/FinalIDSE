@@ -11,7 +11,7 @@ public class JugadorController : MonoBehaviour
     public Text velocidad;
 
     private float driftFactor = 0.1f;
-    private float acelerationFactor = 1000f;
+    private float acelerationFactor = 750f;
     public float turnFactor = 1.0f;
 
     private float acelerationInput = 0;
@@ -54,7 +54,7 @@ public class JugadorController : MonoBehaviour
         // Hacer que el frenado sea mas fuerte
         if (acelerationInput < 0)
         {
-            acelerationInput *= 3f;
+            acelerationInput *= 4f;
         }
 
         // Fuerza del motor
@@ -72,11 +72,11 @@ public class JugadorController : MonoBehaviour
         // Hacer que el vehiculo gire menos al inicio, pero luego gire mas.
         if (steeringInput == 0 && turnFactor >= 1.0f)
         {
-            turnFactor -= 0.01f;
+            turnFactor -= 0.2f;
         }
-        else if (steeringInput != 0 && turnFactor <= 1.5f)
+        else if (steeringInput != 0 && turnFactor <= 2.0f)
         {
-            turnFactor += 0.01f;
+            turnFactor += 0.05f;
         }
 
         rotationAngle -= steeringInput * turnFactor * minSpeed;
@@ -113,7 +113,7 @@ public class JugadorController : MonoBehaviour
     {
         var velocidadAdelante = transform.up * _rb.velocity;
         var esMovimientoHaciaAdelante = velocidadAdelante.x > 0 || velocidadAdelante.y > 0;
-        var magnitudVelocidad = velocidadAdelante.magnitude * 2.5f;
+        var magnitudVelocidad = velocidadAdelante.magnitude * 4f;
 
         return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
     }
