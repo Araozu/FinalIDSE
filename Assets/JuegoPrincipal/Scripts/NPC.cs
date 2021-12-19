@@ -16,9 +16,10 @@ namespace JuegoPrincipal.Scripts
     {
         private Estado _estado = Estado.Acelerando;
 
-        private const float AcelerationFactor = 750f;
+        private const float AcelerationFactor = 1000f;
         private const int MaximaVelocidad = 30;
         private float steeringInput = 0;
+        private float rotationAngle = 0;
 
         private bool _desactivarMovimiento = false;
 
@@ -26,15 +27,19 @@ namespace JuegoPrincipal.Scripts
         // Cambia segun la distancia con el objeto al frente.
         private float _fuerzaMotor = 0.5f;
 
+        // Indica hacia donde se dirige el vehiculo
+        private Vector3 _puntoDestino = Vector3.zero;
+
         private Rigidbody2D _rb;
 
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
+            rotationAngle = _rb.rotation;
         }
 
         // Update is called once per frame
-        private void Update()
+        private void FixedUpdate()
         {
             if (_desactivarMovimiento) return;
 
@@ -51,6 +56,25 @@ namespace JuegoPrincipal.Scripts
                     RemoveOrthogonalForces();
                     break;
             }
+            CalcularAnguloGiro();
+        }
+
+        private void CalcularAnguloGiro()
+        {
+            var objetivo = _puntoDestino;
+            if (objetivo == Vector3.zero) return;
+
+            // No borrar: Castear los vectores a Vector3 para eliminar la componente z,
+            // y que no afecte el angulo de giro.
+            Vector2 direccionObjetivo = (objetivo - transform.position).normalized;
+            Vector2 direccionActual = transform.up.normalized;
+
+            var angulos = Vector3.Angle(direccionActual, direccionObjetivo);
+
+            var cantidadRotacion = math.round(angulos * 100) / 1000;
+            rotationAngle -= cantidadRotacion;
+            
+            _rb.MoveRotation(rotationAngle);
         }
 
         private void AplicarFuerzaMotor()
@@ -63,9 +87,10 @@ namespace JuegoPrincipal.Scripts
         {
             var forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
             var rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
-
+            
+            // drifFactor = 0.9f  -- numero magico, otro valor hace que el npc gire mal
             // forward + right * driftFactor
-            _rb.velocity = forwardVelocity + rightVelocity * 0.1f;
+            _rb.velocity = forwardVelocity + rightVelocity * 0.5f;
         }
 
         /**
@@ -82,7 +107,7 @@ namespace JuegoPrincipal.Scripts
         }
 
         /**
-         * Informa al npc de la distancia entre este y otro vehiculo
+         * Informa al npc de la distancia entre este y otro vehiculo, y calcula cuando deberia acelerar
          * distancia: valor positivo. Un valor mayor a 6 indica que no hay ningun vehiculo cerca
          * velocidadOther: Velocidad del vehiculo delante
          */
@@ -117,7 +142,7 @@ namespace JuegoPrincipal.Scripts
 
                 // Sino frenar segun la distancia y velocidad
                 _estado = Estado.Frenando;
-                _fuerzaMotor = diferenciaVelocidad / 20;
+                _fuerzaMotor = diferenciaVelocidad / 30;
 
                 // Para evitar retroceso, si este vehiculo tiene velocidad negativa,
                 // establecer velocidad a 0
@@ -143,6 +168,12 @@ namespace JuegoPrincipal.Scripts
                     return;
                 }
             }
+        }
+
+        public void SetPuntoDestino(Vector3 destino)
+        {
+            _puntoDestino = destino;
+            Debug.Log("Establecer destino: " + destino);
         }
 
         private IEnumerator Desaparecer()

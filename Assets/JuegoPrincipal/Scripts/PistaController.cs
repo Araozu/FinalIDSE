@@ -8,8 +8,6 @@ using UnityEngine;
  */
 public class PistaController : MonoBehaviour
 {
-    
-    
     private void OnTriggerStay2D(Collider2D other)
     {
         // Si la colision no es con el jugador retornar
@@ -22,10 +20,28 @@ public class PistaController : MonoBehaviour
         var diferenciaY = math.abs(upVehiculo.y + upPista.y);
 
         var maximo = math.max(diferenciaX, diferenciaY);
-        
+
         if (maximo < 0.8)
         {
             Debug.Log("Sentido contrario");
         }
+    }
+
+    /**
+     * Devuelvue la posicion del punto en el que acaba la pista
+     */
+    public Vector3 GetCheckpointSalida()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("CheckpointSalida"))
+            {
+                return child.transform.position;
+            }
+        }
+
+        Debug.LogError("PistaController - GetCheckpointSalida : No se encontro un hijo " +
+                       "con etiqueta CheckpointSalida.");
+        return Vector3.zero;
     }
 }

@@ -74,6 +74,7 @@ public class JugadorController : MonoBehaviour
             turnFactor += 0.05f;
         }
 
+        // Debug.Log("Diferencia: " + (steeringInput * turnFactor * minSpeed));
         rotationAngle -= steeringInput * turnFactor * minSpeed;
 
         _rb.MoveRotation(rotationAngle);
