@@ -59,24 +59,6 @@ namespace JuegoPrincipal.Scripts
             _rb.AddForce(fuerza, ForceMode2D.Force);
         }
 
-        private void Acelerar()
-        {
-            var fuerza = 0.5f * transform.up * AcelerationFactor * Time.deltaTime;
-            _rb.AddForce(fuerza, ForceMode2D.Force);
-        }
-
-        private void Frenar()
-        {
-            var fuerza = transform.up * -_fuerzaMotor * AcelerationFactor * Time.deltaTime;
-            _rb.AddForce(fuerza, ForceMode2D.Force);
-
-            // Al terminar de frenar establecer el estado a reposo
-            if (_rb.velocity.magnitude < 0.5)
-            {
-                _estado = Estado.Reposo;
-            }
-        }
-
         private void RemoveOrthogonalForces()
         {
             var forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
@@ -113,7 +95,7 @@ namespace JuegoPrincipal.Scripts
                 _fuerzaMotor = 0.5f;
             }
             // Frenar o acelerar dependiendo de la velocidad del vehiculo adelante
-            else if (distancia > 1 && distancia < 6)
+            else if (distancia > 0.5f && distancia < 6)
             {
                 var diferenciaVelocidad = velocidadOther - velocidad;
 

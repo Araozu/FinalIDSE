@@ -44,7 +44,7 @@ public class JugadorController : MonoBehaviour
         }
 
         // Friccion
-        _rb.drag = acelerationInput == 0 ? 0.3f : 0;
+        _rb.drag = acelerationInput == 0 ? 0.2f : 0;
 
         // Hacer que el frenado sea mas fuerte
         if (acelerationInput < 0)

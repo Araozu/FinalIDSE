@@ -54,6 +54,7 @@
   <ItemGroup>
      <Compile Include="Assets\JuegoPrincipal\Scripts\Grafo.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\JugadorController.cs" />
+     <Compile Include="Assets\JuegoPrincipal\Scripts\Persona.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\Velocimetro.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\NPC.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\PistaController.cs" />
@@ -61,7 +62,7 @@
      <Compile Include="Assets\JuegoPrincipal\Scripts\MapController.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\NPCDetector.cs" />
      <Compile Include="Assets\SceneLoader.cs" />
-     <Compile Include="Assets\JuegoPrincipal\Scripts\Persona.cs" />
+     <Compile Include="Assets\MusicPlayer.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
