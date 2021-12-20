@@ -11,6 +11,12 @@ namespace JuegoPrincipal.Scripts.Checkpoint
             _pistaController = transform.parent.GetComponent<PistaController>();
         }
 
+        public Vector2 ObtenerVectorEntrada()
+        {
+            var t = transform;
+            return t.position - t.parent.position;
+        }
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (!col.CompareTag("Vehiculo")) return;
