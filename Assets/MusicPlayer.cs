@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class MusicPlayer : MonoBehaviour
 {
     private static MusicPlayer _instance;
     public AudioClip[] clips;
-    public AudioSource audio;
+    [FormerlySerializedAs("audio")] public AudioSource audioSource;
 
     public static MusicPlayer Instance
     {
@@ -46,7 +47,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void Start()
     {
-        audio = FindObjectOfType<AudioSource>();
+        audioSource = FindObjectOfType<AudioSource>();
     }
 
     private AudioClip GetRandomClip()
@@ -56,10 +57,10 @@ public class MusicPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (audio.isPlaying) return;
+        if (audioSource.isPlaying) return;
 
         var nextClip = GetRandomClip();
-        audio.clip = nextClip;
-        audio.Play();
+        audioSource.clip = nextClip;
+        audioSource.Play();
     }
 }

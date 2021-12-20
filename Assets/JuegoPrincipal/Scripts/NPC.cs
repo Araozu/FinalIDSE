@@ -131,7 +131,7 @@ namespace JuegoPrincipal.Scripts
                 _fuerzaMotor = 0.5f;
             }
             // Frenar o acelerar dependiendo de la velocidad del vehiculo adelante
-            else if (distancia > 0.1f && distancia < 6)
+            else if (distancia > 0.5f && distancia < 6)
             {
                 var diferenciaVelocidad = velocidadOther - velocidad;
 
@@ -153,7 +153,7 @@ namespace JuegoPrincipal.Scripts
 
                 // Sino frenar segun la distancia y velocidad
                 _estado = Estado.Frenando;
-                _fuerzaMotor = diferenciaVelocidad / 30;
+                _fuerzaMotor = diferenciaVelocidad / 10;
 
                 // Para evitar retroceso, si este vehiculo tiene velocidad negativa,
                 // establecer velocidad a 0
@@ -168,7 +168,7 @@ namespace JuegoPrincipal.Scripts
             else
             {
                 _estado = Estado.Frenando;
-                _fuerzaMotor = -4;
+                _fuerzaMotor = -20;
 
                 // Para evitar retroceso, si este vehiculo tiene velocidad negativa,
                 // establecer velocidad a 0
@@ -184,7 +184,6 @@ namespace JuegoPrincipal.Scripts
         public void SetPuntoDestino(Vector3 destino)
         {
             _puntoDestino = destino;
-            Debug.Log("Establecer destino: " + destino);
         }
 
         private IEnumerator Desaparecer()
