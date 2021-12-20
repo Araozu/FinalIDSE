@@ -18,8 +18,7 @@ namespace JuegoPrincipal.Scripts
 
         private const float AcelerationFactor = 1000f;
         private const int MaximaVelocidad = 30;
-        private float steeringInput = 0;
-        private float rotationAngle = 0;
+        private float _rotationAngle;
 
         private bool _desactivarMovimiento = false;
 
@@ -35,7 +34,7 @@ namespace JuegoPrincipal.Scripts
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
-            rotationAngle = _rb.rotation;
+            _rotationAngle = _rb.rotation;
         }
 
         // Update is called once per frame
@@ -56,7 +55,15 @@ namespace JuegoPrincipal.Scripts
                     RemoveOrthogonalForces();
                     break;
             }
+
             CalcularAnguloGiro();
+        }
+
+        private static float AngleBetweenVector2(Vector2 vec1, Vector2 vec2)
+        {
+            Vector2 vec1Rotated90 = new Vector2(-vec1.y, vec1.x);
+            float sign = (Vector2.Dot(vec1Rotated90, vec2) < 0) ? -1.0f : 1.0f;
+            return Vector2.Angle(vec1, vec2) * sign;
         }
 
         private void CalcularAnguloGiro()
@@ -64,22 +71,26 @@ namespace JuegoPrincipal.Scripts
             var objetivo = _puntoDestino;
             if (objetivo == Vector3.zero) return;
 
-            // No borrar: Castear los vectores a Vector3 para eliminar la componente z,
+            // Castear los vectores a Vector2 para eliminar la componente z,
             // y que no afecte el angulo de giro.
-            Vector2 direccionObjetivo = (objetivo - transform.position).normalized;
-            Vector2 direccionActual = transform.up.normalized;
+            var transform1 = transform;
+            Vector2 direccionObjetivo = objetivo - transform1.position;
+            Vector2 direccionActual = transform1.up;
 
-            var angulos = Vector3.Angle(direccionActual, direccionObjetivo);
+            var anguloDiferencia = (float)Math.Round(AngleBetweenVector2(direccionActual, direccionObjetivo), 1);
 
-            var cantidadRotacion = math.round(angulos * 100) / 1000;
-            rotationAngle -= cantidadRotacion;
-            
-            _rb.MoveRotation(rotationAngle);
+            if (math.abs(anguloDiferencia) < 0.1) return;
+
+            var cantidadRotacion = anguloDiferencia / 10;
+
+            _rotationAngle += cantidadRotacion;
+            _rotationAngle %= 360;
+            _rb.MoveRotation(_rotationAngle);
         }
 
         private void AplicarFuerzaMotor()
         {
-            var fuerza = _fuerzaMotor * transform.up * AcelerationFactor * Time.deltaTime;
+            var fuerza = transform.up * (_fuerzaMotor * AcelerationFactor * Time.deltaTime);
             _rb.AddForce(fuerza, ForceMode2D.Force);
         }
 
@@ -87,7 +98,7 @@ namespace JuegoPrincipal.Scripts
         {
             var forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
             var rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
-            
+
             // drifFactor = 0.9f  -- numero magico, otro valor hace que el npc gire mal
             // forward + right * driftFactor
             _rb.velocity = forwardVelocity + rightVelocity * 0.5f;
@@ -120,7 +131,7 @@ namespace JuegoPrincipal.Scripts
                 _fuerzaMotor = 0.5f;
             }
             // Frenar o acelerar dependiendo de la velocidad del vehiculo adelante
-            else if (distancia > 0.5f && distancia < 6)
+            else if (distancia > 0.1f && distancia < 6)
             {
                 var diferenciaVelocidad = velocidadOther - velocidad;
 
