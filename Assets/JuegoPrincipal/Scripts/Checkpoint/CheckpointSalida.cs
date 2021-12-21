@@ -28,7 +28,7 @@ namespace JuegoPrincipal.Scripts.Checkpoint
             var npc = col.GetComponent<NPC>();
 
             // Buscar otros checkpointEntrada en un radio.
-            var objetos = Physics2D.OverlapCircleAll(transform.position, 20f);
+            var objetos = Physics2D.OverlapCircleAll(transform.position, 10f);
             var puntosDestino = new List<Collider2D>();
             foreach (var objeto in objetos)
             {
