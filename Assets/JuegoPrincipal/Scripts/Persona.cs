@@ -24,7 +24,6 @@ namespace JuegoPrincipal.Scripts
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             var rotacionInicial = _rb.rotation;
-            Debug.Log(rotacionInicial);
             _movimiento = (rotacionInicial % 360) switch
             {
                 90 => new Vector3(-1, 0),

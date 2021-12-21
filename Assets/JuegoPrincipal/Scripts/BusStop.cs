@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,6 +7,7 @@ namespace JuegoPrincipal.Scripts
     public class BusStop : MonoBehaviour
     {
         private int _pasajerosEnParada;
+        private bool _utilizado = false;
 
         private void Start()
         {
@@ -17,14 +19,9 @@ namespace JuegoPrincipal.Scripts
             _pasajerosEnParada++;
         }
 
-        private void OnTriggerStay2D(Collider2D other)
+        private IEnumerator Operar(JugadorController jugador, BusScript bus)
         {
-            if (!other.CompareTag("Player")) return;
-
-            if (other.GetComponent<Rigidbody2D>().velocity != Vector2.zero) return;
-
-            var jugador = other.GetComponent<JugadorController>();
-            var bus = other.GetComponent<BusScript>();
+            Debug.Log("Inicio");
             // Desactivar movimiento
             jugador.DesactivarMovimiento();
 
@@ -34,12 +31,14 @@ namespace JuegoPrincipal.Scripts
             {
                 bus.BajarPasajero();
                 // TODO: Animacion de subir pasajero
+                yield return new WaitForSeconds(1);
             }
 
             // Hacer subir pasajeros
             for (var i = 0; i < _pasajerosEnParada; i++)
             {
                 bus.SubirPasajero();
+                yield return new WaitForSeconds(1);
                 // TODO: Animacion de bajar pasajero
             }
 
@@ -48,6 +47,21 @@ namespace JuegoPrincipal.Scripts
 
             // Activar movimiento
             jugador.ActivarMovimiento();
+            Debug.Log("Fin");
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (_utilizado) return;
+            if (!other.CompareTag("Player")) return;
+
+            if (other.GetComponent<Rigidbody2D>().velocity != Vector2.zero) return;
+
+            var jugador = other.GetComponent<JugadorController>();
+            var bus = other.GetComponent<BusScript>();
+
+            _utilizado = true;
+            StartCoroutine(Operar(jugador, bus));
         }
     }
 }
