@@ -19,11 +19,20 @@ namespace JuegoPrincipal.Scripts
 
         private static readonly int Caminando = Animator.StringToHash("Caminando");
 
-        // Start is called before the first frame update
         private void Start()
         {
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
+            var rotacionInicial = _rb.rotation;
+            Debug.Log(rotacionInicial);
+            _movimiento = (rotacionInicial % 360) switch
+            {
+                90 => new Vector3(-1, 0),
+                180 => new Vector3(0, -1),
+                270 => new Vector3(1, 0),
+                _ => _movimiento
+            };
+
             Mover();
         }
 
@@ -77,6 +86,7 @@ namespace JuegoPrincipal.Scripts
 
         private void Detener()
         {
+            _animator.SetBool(Caminando, false);
         }
 
         private void ActualizarPosicion()
@@ -86,6 +96,13 @@ namespace JuegoPrincipal.Scripts
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.CompareTag("Estacion"))
+            {
+                col.transform.parent.GetComponent<BusStop>().AumentarPasajero();
+                Destroy(gameObject);
+                return;
+            }
+
             DireccionOpuesta();
         }
 

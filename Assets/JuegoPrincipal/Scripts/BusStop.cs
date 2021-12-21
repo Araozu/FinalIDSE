@@ -9,7 +9,12 @@ namespace JuegoPrincipal.Scripts
 
         private void Start()
         {
-            _pasajerosEnParada = Random.Range(1, 10);
+            _pasajerosEnParada = Random.Range(1, 5);
+        }
+
+        public void AumentarPasajero()
+        {
+            _pasajerosEnParada++;
         }
 
         private void OnTriggerStay2D(Collider2D other)
