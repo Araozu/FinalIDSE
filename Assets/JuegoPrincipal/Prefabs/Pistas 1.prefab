@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2173683581917435486}
   m_Layer: 0
   m_Name: Pista (4)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3970769990330081829}
   m_Layer: 0
   m_Name: Pista (27)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 3711006388840623546}
   m_Layer: 0
   m_Name: Pista (38)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 852221601431304373}
   m_Layer: 0
   m_Name: Pista (17)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -924,7 +924,7 @@ GameObject:
   - component: {fileID: 8208453363637038559}
   m_Layer: 0
   m_Name: Pista (35)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 7168278077096954213}
   m_Layer: 0
   m_Name: Pista (15)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1384,7 +1384,7 @@ GameObject:
   - component: {fileID: 99352637351006220}
   m_Layer: 0
   m_Name: Pista (29)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1649,7 +1649,7 @@ GameObject:
   - component: {fileID: 3000873747093080205}
   m_Layer: 0
   m_Name: Pista (21)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1944,7 +1944,7 @@ GameObject:
   - component: {fileID: 686178243101960676}
   m_Layer: 0
   m_Name: Pista (14)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2069,7 +2069,7 @@ GameObject:
   - component: {fileID: 5286521704412741153}
   m_Layer: 0
   m_Name: Pista (19)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2384,7 +2384,7 @@ GameObject:
   - component: {fileID: 3073276794350242647}
   m_Layer: 0
   m_Name: Pista (30)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2649,7 +2649,7 @@ GameObject:
   - component: {fileID: 6234720499384810850}
   m_Layer: 0
   m_Name: Pista (39)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2804,7 +2804,7 @@ GameObject:
   - component: {fileID: 8506615672195512735}
   m_Layer: 0
   m_Name: Pista (16)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3989,7 +3989,7 @@ GameObject:
   - component: {fileID: 6868954173975745219}
   m_Layer: 0
   m_Name: Pista (13)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4244,7 +4244,7 @@ GameObject:
   - component: {fileID: 5850489812538891088}
   m_Layer: 0
   m_Name: Pista (7)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4569,7 +4569,7 @@ GameObject:
   - component: {fileID: 4576513862545551270}
   m_Layer: 0
   m_Name: Pista (20)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6244,7 +6244,7 @@ GameObject:
   - component: {fileID: 5950034590353084559}
   m_Layer: 0
   m_Name: Pista (29)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6369,7 +6369,7 @@ GameObject:
   - component: {fileID: 7788547665128442657}
   m_Layer: 0
   m_Name: Pista (12)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6594,7 +6594,7 @@ GameObject:
   - component: {fileID: 7357903913511331290}
   m_Layer: 0
   m_Name: Pista (21)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6919,7 +6919,7 @@ GameObject:
   - component: {fileID: 2842881033476267423}
   m_Layer: 0
   m_Name: Pista (9)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7324,7 +7324,7 @@ GameObject:
   - component: {fileID: 6373163704780941418}
   m_Layer: 0
   m_Name: Pista (24)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7519,7 +7519,7 @@ GameObject:
   - component: {fileID: 5479380544464732981}
   m_Layer: 0
   m_Name: Pista (2)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7844,7 +7844,7 @@ GameObject:
   - component: {fileID: 532613523949582487}
   m_Layer: 0
   m_Name: Pista (23)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7999,7 +7999,7 @@ GameObject:
   - component: {fileID: 4845947147074348067}
   m_Layer: 0
   m_Name: Pista (31)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8704,7 +8704,7 @@ GameObject:
   - component: {fileID: 5921119278343373448}
   m_Layer: 0
   m_Name: Pista (26)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8899,7 +8899,7 @@ GameObject:
   - component: {fileID: 6686635949082287112}
   m_Layer: 0
   m_Name: Pista (6)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9024,7 +9024,7 @@ GameObject:
   - component: {fileID: 4628497227234865379}
   m_Layer: 0
   m_Name: Pista (28)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9219,7 +9219,7 @@ GameObject:
   - component: {fileID: 9001319618369066519}
   m_Layer: 0
   m_Name: Pista (23)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9414,7 +9414,7 @@ GameObject:
   - component: {fileID: 5841222966499077713}
   m_Layer: 0
   m_Name: Pista (24)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9539,7 +9539,7 @@ GameObject:
   - component: {fileID: 2166502185531895291}
   m_Layer: 0
   m_Name: Pista (22)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9764,7 +9764,7 @@ GameObject:
   - component: {fileID: 7307945810029167606}
   m_Layer: 0
   m_Name: Pista (28)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10369,7 +10369,7 @@ GameObject:
   - component: {fileID: 5952820506503657888}
   m_Layer: 0
   m_Name: Pista (25)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10524,7 +10524,7 @@ GameObject:
   - component: {fileID: 6905581591815322404}
   m_Layer: 0
   m_Name: Pista (3)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10649,7 +10649,7 @@ GameObject:
   - component: {fileID: 1986051063803021402}
   m_Layer: 0
   m_Name: Pista (27)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10984,7 +10984,7 @@ GameObject:
   - component: {fileID: 3576608522328705185}
   m_Layer: 0
   m_Name: Pista (36)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11109,7 +11109,7 @@ GameObject:
   - component: {fileID: 6170055630227752157}
   m_Layer: 0
   m_Name: Pista (5)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11364,7 +11364,7 @@ GameObject:
   - component: {fileID: 5546796240622887683}
   m_Layer: 0
   m_Name: Pista (22)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11659,7 +11659,7 @@ GameObject:
   - component: {fileID: 4006607956937403981}
   m_Layer: 0
   m_Name: Pista (18)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12054,7 +12054,7 @@ GameObject:
   - component: {fileID: 4473512276147562068}
   m_Layer: 0
   m_Name: Pista (10)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12209,7 +12209,7 @@ GameObject:
   - component: {fileID: 2590600745053143824}
   m_Layer: 0
   m_Name: Pista (38)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12334,7 +12334,7 @@ GameObject:
   - component: {fileID: 8258070813975808473}
   m_Layer: 0
   m_Name: Pista (32)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12459,7 +12459,7 @@ GameObject:
   - component: {fileID: 2991705206940555452}
   m_Layer: 0
   m_Name: Pista (37)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12584,7 +12584,7 @@ GameObject:
   - component: {fileID: 4089903617255335664}
   m_Layer: 0
   m_Name: Pista (11)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12809,7 +12809,7 @@ GameObject:
   - component: {fileID: 7778123937381575106}
   m_Layer: 0
   m_Name: Pista (8)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13974,7 +13974,7 @@ GameObject:
   - component: {fileID: 9148495524942126322}
   m_Layer: 0
   m_Name: Pista (59)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14239,7 +14239,7 @@ GameObject:
   - component: {fileID: 9148495524962968708}
   m_Layer: 0
   m_Name: Pista (74)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14434,7 +14434,7 @@ GameObject:
   - component: {fileID: 9148495524987903386}
   m_Layer: 0
   m_Name: Pista (67)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14869,7 +14869,7 @@ GameObject:
   - component: {fileID: 9148495525023365676}
   m_Layer: 0
   m_Name: Pista (72)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14994,7 +14994,7 @@ GameObject:
   - component: {fileID: 9148495525032209263}
   m_Layer: 0
   m_Name: Pista (60)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15119,7 +15119,7 @@ GameObject:
   - component: {fileID: 9148495525043487103}
   m_Layer: 0
   m_Name: Pista (33)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15444,7 +15444,7 @@ GameObject:
   - component: {fileID: 9148495525163525476}
   m_Layer: 0
   m_Name: Pista (83)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15839,7 +15839,7 @@ GameObject:
   - component: {fileID: 9148495525237621400}
   m_Layer: 0
   m_Name: Pista (78)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15994,7 +15994,7 @@ GameObject:
   - component: {fileID: 9148495525250856883}
   m_Layer: 0
   m_Name: Pista (46)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16119,7 +16119,7 @@ GameObject:
   - component: {fileID: 9148495525259251455}
   m_Layer: 0
   m_Name: Pista (64)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16244,7 +16244,7 @@ GameObject:
   - component: {fileID: 9148495525283794057}
   m_Layer: 0
   m_Name: Pista (77)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16709,7 +16709,7 @@ GameObject:
   - component: {fileID: 9148495525373552852}
   m_Layer: 0
   m_Name: Pista (87)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16834,7 +16834,7 @@ GameObject:
   - component: {fileID: 9148495525381147295}
   m_Layer: 0
   m_Name: Pista (81)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17259,7 +17259,7 @@ GameObject:
   - component: {fileID: 9148495525462290382}
   m_Layer: 0
   m_Name: Pista (55)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17594,7 +17594,7 @@ GameObject:
   - component: {fileID: 9148495525497833572}
   m_Layer: 0
   m_Name: Pista (53)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18059,7 +18059,7 @@ GameObject:
   - component: {fileID: 9148495525587377134}
   m_Layer: 0
   m_Name: Pista (88)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18324,7 +18324,7 @@ GameObject:
   - component: {fileID: 9148495525636994813}
   m_Layer: 0
   m_Name: Pista (75)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18449,7 +18449,7 @@ GameObject:
   - component: {fileID: 9148495525643675492}
   m_Layer: 0
   m_Name: Pista (73)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18574,7 +18574,7 @@ GameObject:
   - component: {fileID: 9148495525655093843}
   m_Layer: 0
   m_Name: Pista (82)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18729,7 +18729,7 @@ GameObject:
   - component: {fileID: 9148495525707166384}
   m_Layer: 0
   m_Name: Pista (89)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18854,7 +18854,7 @@ GameObject:
   - component: {fileID: 9148495525723033494}
   m_Layer: 0
   m_Name: Pista (48)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19049,7 +19049,7 @@ GameObject:
   - component: {fileID: 9148495525736862346}
   m_Layer: 0
   m_Name: Pista (85)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19244,7 +19244,7 @@ GameObject:
   - component: {fileID: 9148495525770368332}
   m_Layer: 0
   m_Name: Pista (50)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19439,7 +19439,7 @@ GameObject:
   - component: {fileID: 9148495525774077249}
   m_Layer: 0
   m_Name: Pista (51)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19634,7 +19634,7 @@ GameObject:
   - component: {fileID: 9148495525805128639}
   m_Layer: 0
   m_Name: Pista (61)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19999,7 +19999,7 @@ GameObject:
   - component: {fileID: 9148495525879627138}
   m_Layer: 0
   m_Name: Pista (80)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20224,7 +20224,7 @@ GameObject:
   - component: {fileID: 9148495525913548957}
   m_Layer: 0
   m_Name: Pista (58)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20449,7 +20449,7 @@ GameObject:
   - component: {fileID: 9148495525932607498}
   m_Layer: 0
   m_Name: Pista (57)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20714,7 +20714,7 @@ GameObject:
   - component: {fileID: 9148495525968480584}
   m_Layer: 0
   m_Name: Pista (62)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20909,7 +20909,7 @@ GameObject:
   - component: {fileID: 9148495525980972630}
   m_Layer: 0
   m_Name: Pista (84)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21294,7 +21294,7 @@ GameObject:
   - component: {fileID: 9148495526059703298}
   m_Layer: 0
   m_Name: Pista (40)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21449,7 +21449,7 @@ GameObject:
   - component: {fileID: 9148495526068699467}
   m_Layer: 0
   m_Name: Pista (76)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21574,7 +21574,7 @@ GameObject:
   - component: {fileID: 9148495526096943236}
   m_Layer: 0
   m_Name: Pista (56)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21829,7 +21829,7 @@ GameObject:
   - component: {fileID: 9148495526150013000}
   m_Layer: 0
   m_Name: Pista (63)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21954,7 +21954,7 @@ GameObject:
   - component: {fileID: 9148495526158620579}
   m_Layer: 0
   m_Name: Pista (54)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22279,7 +22279,7 @@ GameObject:
   - component: {fileID: 9148495526209225379}
   m_Layer: 0
   m_Name: Pista (65)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22434,7 +22434,7 @@ GameObject:
   - component: {fileID: 9148495526230939212}
   m_Layer: 0
   m_Name: Pista (42)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22659,7 +22659,7 @@ GameObject:
   - component: {fileID: 9148495526281426137}
   m_Layer: 0
   m_Name: Pista (66)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23344,7 +23344,7 @@ GameObject:
   - component: {fileID: 9148495526419961724}
   m_Layer: 0
   m_Name: Pista (86)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23659,7 +23659,7 @@ GameObject:
   - component: {fileID: 9148495526503501407}
   m_Layer: 0
   m_Name: Pista (44)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23854,7 +23854,7 @@ GameObject:
   - component: {fileID: 9148495526518331570}
   m_Layer: 0
   m_Name: Pista (79)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23979,7 +23979,7 @@ GameObject:
   - component: {fileID: 9148495526521107982}
   m_Layer: 0
   m_Name: Pista (71)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24304,7 +24304,7 @@ GameObject:
   - component: {fileID: 9148495526612743188}
   m_Layer: 0
   m_Name: Pista (69)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24699,7 +24699,7 @@ GameObject:
   - component: {fileID: 9148495526670684552}
   m_Layer: 0
   m_Name: Pista (68)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25304,7 +25304,7 @@ GameObject:
   - component: {fileID: 9148495526748862033}
   m_Layer: 0
   m_Name: Pista (70)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26379,7 +26379,7 @@ GameObject:
   - component: {fileID: 9148495526928504771}
   m_Layer: 0
   m_Name: Pista (52)
-  m_TagString: Untagged
+  m_TagString: Pista
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
