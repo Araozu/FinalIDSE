@@ -5,14 +5,16 @@ public class JugadorController : MonoBehaviour
 {
     private Rigidbody2D _rb;
 
-    private float driftFactor = 0.1f;
-    private float acelerationFactor = 750f;
+    private const float DriftFactor = 0.1f;
+    private const float AcelerationFactor = 750f;
     public float turnFactor = 0.5f;
 
-    private float acelerationInput = 0;
-    private float steeringInput = 0;
+    private float _acelerationInput = 0;
+    private float _steeringInput = 0;
 
-    private float rotationAngle = 0;
+    private float _rotationAngle = 0;
+
+    private bool _movimientoActivado = true;
 
     private void Start()
     {
@@ -22,13 +24,13 @@ public class JugadorController : MonoBehaviour
 
     private void Update()
     {
+        if (!_movimientoActivado) return;
+
         var vector2 = Vector2.zero;
         vector2.x = Input.GetAxis("Horizontal");
         vector2.y = Input.GetAxis("Vertical");
 
         SetInputVector(vector2);
-
-        
     }
 
     private void ApplyEngineForce()
@@ -37,23 +39,23 @@ public class JugadorController : MonoBehaviour
         // TODO: Modo retroceso
         var forwardVelocity = transform.up * _rb.velocity;
         var esMovimientoHaciaAdelante = forwardVelocity.x > 0 || forwardVelocity.y > 0;
-        if (acelerationInput <= 0 && !esMovimientoHaciaAdelante)
+        if (_acelerationInput <= 0 && !esMovimientoHaciaAdelante)
         {
             _rb.velocity = Vector2.zero;
             return;
         }
 
         // Friccion
-        _rb.drag = acelerationInput == 0 ? 0.2f : 0;
+        _rb.drag = _acelerationInput == 0 ? 0.2f : 0;
 
         // Hacer que el frenado sea mas fuerte
-        if (acelerationInput < 0)
+        if (_acelerationInput < 0)
         {
-            acelerationInput *= 4f;
+            _acelerationInput *= 4f;
         }
 
         // Fuerza del motor
-        var fuerza = transform.up * acelerationInput * acelerationFactor * Time.deltaTime;
+        var fuerza = transform.up * _acelerationInput * AcelerationFactor * Time.deltaTime;
 
         _rb.AddForce(fuerza, ForceMode2D.Force);
     }
@@ -65,25 +67,25 @@ public class JugadorController : MonoBehaviour
         minSpeed = Mathf.Clamp01(minSpeed);
 
         // Hacer que el vehiculo gire menos al inicio, pero luego gire mas.
-        if (steeringInput == 0 && turnFactor >= 0.5f)
+        if (_steeringInput == 0 && turnFactor >= 0.5f)
         {
             turnFactor -= 0.5f;
         }
-        else if (steeringInput != 0 && turnFactor <= 2.5f)
+        else if (_steeringInput != 0 && turnFactor <= 2.5f)
         {
             turnFactor += 0.05f;
         }
 
         // Debug.Log("Diferencia: " + (steeringInput * turnFactor * minSpeed));
-        rotationAngle -= steeringInput * turnFactor * minSpeed;
+        _rotationAngle -= _steeringInput * turnFactor * minSpeed;
 
-        _rb.MoveRotation(rotationAngle);
+        _rb.MoveRotation(_rotationAngle);
     }
 
     private void SetInputVector(Vector2 inputVector)
     {
-        steeringInput = inputVector.x;
-        acelerationInput = inputVector.y;
+        _steeringInput = inputVector.x;
+        _acelerationInput = inputVector.y;
     }
 
     private void RemoveOrthogonalForces()
@@ -91,7 +93,7 @@ public class JugadorController : MonoBehaviour
         var forwardVelocity = transform.up * Vector2.Dot(_rb.velocity, transform.up);
         var rightVelocity = transform.right * Vector2.Dot(_rb.velocity, transform.right);
 
-        _rb.velocity = forwardVelocity + rightVelocity * driftFactor;
+        _rb.velocity = forwardVelocity + rightVelocity * DriftFactor;
     }
 
     private void FixedUpdate()
@@ -112,5 +114,15 @@ public class JugadorController : MonoBehaviour
         var magnitudVelocidad = math.floor(velocidadAdelante.magnitude * 4f);
 
         return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
+    }
+
+    public void DesactivarMovimiento()
+    {
+        _movimientoActivado = false;
+    }
+
+    public void ActivarMovimiento()
+    {
+        _movimientoActivado = true;
     }
 }
