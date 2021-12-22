@@ -16,6 +16,7 @@ namespace JuegoPrincipal.Scripts
         private Vector3 _movimiento = new Vector3(0, 1, 0);
         private Animator _animator;
         private Rigidbody2D _rb;
+        private int _framesEnPista = 1;
 
         private static readonly int Caminando = Animator.StringToHash("Caminando");
 
@@ -38,6 +39,10 @@ namespace JuegoPrincipal.Scripts
         private void Update()
         {
             ActualizarPosicion();
+            if (_framesEnPista > 60)
+            {
+                Destroy(gameObject);
+            }
         }
 
         private void Mover()
@@ -79,7 +84,7 @@ namespace JuegoPrincipal.Scripts
         private void DireccionOpuesta()
         {
             _movimiento *= -1;
-            transform.position += _movimiento * Time.deltaTime * 2;
+            transform.position += _movimiento * Time.deltaTime * 15;
             RotarMovimiento();
         }
 
@@ -103,6 +108,16 @@ namespace JuegoPrincipal.Scripts
             }
 
             DireccionOpuesta();
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            _framesEnPista++;
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            _framesEnPista = 0;
         }
 
         private void OnCollisionEnter2D(Collision2D col)
