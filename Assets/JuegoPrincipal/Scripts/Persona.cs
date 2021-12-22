@@ -17,6 +17,15 @@ namespace JuegoPrincipal.Scripts
         private Animator _animator;
         private Rigidbody2D _rb;
         private int _framesEnPista = 1;
+        private EstadoPersona _estado;
+
+        public GameObject circuloTaxi;
+
+        public bool PidiendoTaxi
+        {
+            get;
+            private set;
+        }
 
         private static readonly int Caminando = Animator.StringToHash("Caminando");
 
@@ -38,6 +47,8 @@ namespace JuegoPrincipal.Scripts
 
         private void Update()
         {
+            if (_estado == EstadoPersona.Detenido) return;
+            
             ActualizarPosicion();
             if (_framesEnPista > 60)
             {
@@ -48,6 +59,7 @@ namespace JuegoPrincipal.Scripts
         private void Mover()
         {
             _animator.SetBool(Caminando, true);
+            _estado = EstadoPersona.Caminando;
         }
 
         private void RotarMovimiento()
@@ -91,11 +103,24 @@ namespace JuegoPrincipal.Scripts
         private void Detener()
         {
             _animator.SetBool(Caminando, false);
+            _estado = EstadoPersona.Detenido;
         }
 
         private void ActualizarPosicion()
         {
             transform.position += _movimiento * Time.deltaTime;
+        }
+
+        public void PedirTaxi()
+        {
+            Detener();
+            PidiendoTaxi = true;
+            var circuloTaxiObject = Instantiate(circuloTaxi);
+            // No se crea el circulo como hijo de la persona porque esto cambia
+            // el tamaño de su rigidbody.
+            // En su lugar, guardar una referencia de esta persona en el circulo.
+            circuloTaxiObject.GetComponent<CirculoTaxi>().SetPersonaOrigen(this);
+            circuloTaxiObject.transform.position = transform.position;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
