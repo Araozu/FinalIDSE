@@ -68,6 +68,7 @@ namespace JuegoPrincipal.Scripts
         public void BajarPasajero()
         {
             TienePasajero = false;
+            StartCoroutine(BuscarPasajero());
         }
     }
 }

@@ -11,6 +11,7 @@ namespace JuegoPrincipal.Scripts
         private void Start()
         {
             _renderer = GetComponent<SpriteRenderer>();
+            _renderer.color = new Color(255, 255, 255, 0);
         }
 
         private IEnumerator BajarPasajero(JugadorController jugador, TaxiScript taxi)
@@ -24,7 +25,7 @@ namespace JuegoPrincipal.Scripts
             var personaGameObject = Instantiate(persona);
             personaGameObject.transform.position = transform.GetChild(0).transform.position;
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.25f);
 
             // Activar movimiento
             jugador.ActivarMovimiento();
