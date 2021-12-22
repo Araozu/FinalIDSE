@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace JuegoPrincipal.Scripts
@@ -7,7 +8,7 @@ namespace JuegoPrincipal.Scripts
     public class BusStop : MonoBehaviour
     {
         private int _pasajerosEnParada;
-        private bool _utilizado = false;
+        public bool utilizado = false;
 
         private void Start()
         {
@@ -47,12 +48,16 @@ namespace JuegoPrincipal.Scripts
 
             // Activar movimiento
             jugador.ActivarMovimiento();
+
+            // Obtener la siguiente parada y asignarla
+            bus.SigParada();
+
             Debug.Log("Fin");
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (_utilizado) return;
+            if (utilizado) return;
             if (!other.CompareTag("Player")) return;
 
             if (other.GetComponent<Rigidbody2D>().velocity != Vector2.zero) return;
@@ -60,7 +65,7 @@ namespace JuegoPrincipal.Scripts
             var jugador = other.GetComponent<JugadorController>();
             var bus = other.GetComponent<BusScript>();
 
-            _utilizado = true;
+            utilizado = true;
             StartCoroutine(Operar(jugador, bus));
         }
     }

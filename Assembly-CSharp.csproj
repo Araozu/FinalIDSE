@@ -65,6 +65,8 @@
      <Compile Include="Assets\JuegoPrincipal\Scripts\UI\BotonSalir.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\NPCDetector.cs" />
      <Compile Include="Assets\SceneLoader.cs" />
+     <Compile Include="Assets\JuegoPrincipal\Scripts\TaxiScript.cs" />
+     <Compile Include="Assets\JuegoPrincipal\Scripts\FlechaScript.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
