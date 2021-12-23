@@ -19,6 +19,7 @@ namespace JuegoPrincipal.Scripts
             // Al colisionar con el jugador, destruir la persona y hacer que el
             // taxi este ocupado
             var taxi = other.GetComponent<TaxiScript>();
+            if (taxi.TienePasajero) return;
             taxi.SubirPasajero();
             Destroy(personaOrigen.gameObject);
             Destroy(gameObject);

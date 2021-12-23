@@ -43,5 +43,10 @@ namespace JuegoPrincipal.Scripts.UI
 
             StartCoroutine(Temporizador());
         }
+
+        public void AumentarTiempo(int cantidad)
+        {
+            tiempo += cantidad;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections;
+using JuegoPrincipal.Scripts.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,16 +9,22 @@ namespace JuegoPrincipal.Scripts
     {
         public bool TienePasajero { get; private set; }
         private float _puntoSuerte = 0.5f;
+        private int ultimaDistancia;
 
         private PuntoTaxi[] _puntosTaxis;
         public Vector3 _objetivo { get; private set; }
         private FlechaScript _flechaScript;
+
+        private Puntaje _puntaje;
+        private TiempoController _tiempoController;
 
         private void Start()
         {
             StartCoroutine(BuscarPasajero());
             _puntosTaxis = FindObjectsOfType<PuntoTaxi>();
             _flechaScript = GetComponentInChildren<FlechaScript>();
+            _puntaje = FindObjectOfType<Puntaje>();
+            _tiempoController = FindObjectOfType<TiempoController>();
         }
 
         private IEnumerator BuscarPasajero()
@@ -35,6 +42,7 @@ namespace JuegoPrincipal.Scripts
                     var persona = objeto.GetComponent<Persona>();
                     if (persona == null) continue;
                     if (persona.PidiendoTaxi) continue;
+                    if (persona.Cooldown) continue;
 
                     persona.PedirTaxi();
                     _puntoSuerte = 0.5f;
@@ -53,7 +61,6 @@ namespace JuegoPrincipal.Scripts
 
         public void SubirPasajero()
         {
-            Debug.Log("Pasajero Aceptado");
             TienePasajero = true;
             _puntoSuerte = 0.5f;
 
@@ -61,6 +68,7 @@ namespace JuegoPrincipal.Scripts
             var parada = _puntosTaxis[indiceParada];
             var paradaPosition = parada.transform.position;
             _objetivo = paradaPosition;
+            ultimaDistancia =(int) Vector3.Distance(transform.position, _objetivo);
             _flechaScript.SetTarget(paradaPosition);
             parada.Activar();
         }
@@ -68,6 +76,8 @@ namespace JuegoPrincipal.Scripts
         public void BajarPasajero()
         {
             TienePasajero = false;
+            _puntaje.SumarPuntos(ultimaDistancia / 10);
+            _tiempoController.AumentarTiempo(ultimaDistancia / 5);
             StartCoroutine(BuscarPasajero());
         }
     }

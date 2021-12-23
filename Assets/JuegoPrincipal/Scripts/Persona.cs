@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,16 +20,15 @@ namespace JuegoPrincipal.Scripts
 
         public GameObject circuloTaxi;
 
-        public bool PidiendoTaxi
-        {
-            get;
-            private set;
-        }
+        public bool Cooldown { get; private set; }
+
+        public bool PidiendoTaxi { get; private set; }
 
         private static readonly int Caminando = Animator.StringToHash("Caminando");
 
         private void Start()
         {
+            Cooldown = true;
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             var rotacionInicial = _rb.rotation;
@@ -43,17 +41,24 @@ namespace JuegoPrincipal.Scripts
             };
 
             Mover();
+            StartCoroutine(TerminarCooldown());
         }
 
         private void Update()
         {
             if (_estado == EstadoPersona.Detenido) return;
-            
+
             ActualizarPosicion();
             if (_framesEnPista > 60)
             {
                 Destroy(gameObject);
             }
+        }
+
+        private IEnumerator TerminarCooldown()
+        {
+            yield return new WaitForSeconds(5);
+            Cooldown = false;
         }
 
         private void Mover()
