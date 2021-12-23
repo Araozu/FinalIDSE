@@ -10,7 +10,7 @@ namespace JuegoPrincipal.Scripts
         {
             personaOrigen = persona;
         }
-        
+
         private void OnTriggerStay2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;

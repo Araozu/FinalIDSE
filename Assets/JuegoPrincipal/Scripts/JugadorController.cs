@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using JuegoPrincipal.Scripts.UI;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -19,11 +21,14 @@ public class JugadorController : MonoBehaviour
 
     // Indica si el vehiculo puede retroceder.
     private bool _retrocediendo = false;
-    
+
+    private Puntaje _puntaje;
+
     private void Start()
     {
         Application.targetFrameRate = 60;
         _rb = GetComponent<Rigidbody2D>();
+        _puntaje = FindObjectOfType<Puntaje>();
     }
 
     private void Update()
@@ -46,7 +51,7 @@ public class JugadorController : MonoBehaviour
             _retrocediendo = true;
         }
     }
-    
+
     private void ApplyEngineForce()
     {
         // Si la velocidad del auto es negativa, detenerlo
@@ -91,7 +96,7 @@ public class JugadorController : MonoBehaviour
         {
             _steeringInput *= -1;
         }
-        
+
         // Hacer que el vehiculo gire menos al inicio, pero luego gire mas.
         if (_steeringInput == 0 && turnFactor >= 0.5f)
         {
@@ -140,6 +145,30 @@ public class JugadorController : MonoBehaviour
         var magnitudVelocidad = math.floor(velocidadAdelante.magnitude * 4f);
 
         return esMovimientoHaciaAdelante ? magnitudVelocidad : -magnitudVelocidad;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Persona"))
+        {
+            Debug.Log("Colision persona");
+            _puntaje.RestarPuntos(25, "chocar con persona");
+        }
+        else if (col.gameObject.CompareTag("Vehiculo"))
+        {
+            Debug.Log("Colision vehiculo");
+            _puntaje.RestarPuntos(10, "chocar con vehiculo");
+        }
+    }
+
+    /**
+     * Aplica daño por conducir en el carril opuesto.
+     * Es llamado por PistaController, para evitar crear una referencia al objeto Puntaje
+     * en cada objeto Pista
+     */
+    public void HacerDanoPorSentidoContrario()
+    {
+        _puntaje.RestarPuntos(1, "ir en carril opuesto");
     }
 
     public void DesactivarMovimiento()

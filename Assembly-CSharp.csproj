@@ -72,6 +72,7 @@
      <Compile Include="Assets\SceneLoader.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\UI\TiempoController.cs" />
      <Compile Include="Assets\JuegoPrincipal\Scripts\UI\Puntaje.cs" />
+     <Compile Include="Assets\JuegoPrincipal\Scripts\UI\InfraccionScript.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

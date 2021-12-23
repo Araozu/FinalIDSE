@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ using UnityEngine;
  */
 public class PistaController : MonoBehaviour
 {
+    private float tiempoSentidoContrario = 0;
+
     private void OnTriggerStay2D(Collider2D other)
     {
         // Si la colision no es con el jugador retornar
@@ -23,7 +26,12 @@ public class PistaController : MonoBehaviour
 
         if (maximo < 0.8)
         {
-            Debug.Log("Sentido contrario");
+            tiempoSentidoContrario += Time.deltaTime;
+            if (tiempoSentidoContrario > 2)
+            {
+                tiempoSentidoContrario -= 1;
+                other.GetComponent<JugadorController>().HacerDanoPorSentidoContrario();
+            }
         }
     }
 

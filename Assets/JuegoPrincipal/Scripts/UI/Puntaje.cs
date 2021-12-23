@@ -9,10 +9,12 @@ namespace JuegoPrincipal.Scripts.UI
 
         private Text _text;
         public int Puntos { get; private set; }
+        private InfraccionScript _infraccionScript;
     
         private void Start()
         {
             _text = GetComponent<Text>();
+            _infraccionScript = FindObjectOfType<InfraccionScript>();
             Puntos = 20;
         }
 
@@ -21,11 +23,14 @@ namespace JuegoPrincipal.Scripts.UI
             if (Puntos <= 0)
             {
                 // TODO game over
+                Debug.Log("game over");
                 return;
             }
             if (Puntos >= 100)
             {
                 // TODO pantalla ganador
+                Debug.Log("ganaste");
+                return;
             }
 
             if (Puntos > 20)
@@ -48,10 +53,11 @@ namespace JuegoPrincipal.Scripts.UI
         {
             Puntos += cantidad;
         }
-
-        public void RestarPuntos(int cantidad)
+ 
+        public void RestarPuntos(int cantidad, string razon)
         {
             Puntos -= cantidad;
+            StartCoroutine(_infraccionScript.SetRazonInfraccion("-" + cantidad + " pts por " + razon + "!"));
         }
     }
 }
