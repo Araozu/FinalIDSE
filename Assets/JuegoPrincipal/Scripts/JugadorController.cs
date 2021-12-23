@@ -129,6 +129,8 @@ public class JugadorController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_movimientoActivado) return;
+        
         ApplyEngineForce();
         RemoveOrthogonalForces();
         ApplySteering();
