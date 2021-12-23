@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Portada.unity
+    path: Assets/Scenes/Menu.unity
     guid: 0a5220d10aa31774d86d5561c27558e9
   - enabled: 1
     path: Assets/Scenes/CombiMapaCircuito.unity
