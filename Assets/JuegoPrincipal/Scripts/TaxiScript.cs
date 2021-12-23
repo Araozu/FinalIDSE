@@ -7,10 +7,10 @@ namespace JuegoPrincipal.Scripts
     public class TaxiScript : MonoBehaviour
     {
         public bool TienePasajero { get; private set; }
-        private float _puntoSuerte = 0.2f;
+        private float _puntoSuerte = 0.5f;
 
         private PuntoTaxi[] _puntosTaxis;
-        private Vector3 _objetivo = Vector3.zero;
+        public Vector3 _objetivo { get; private set; }
         private FlechaScript _flechaScript;
 
         private void Start()
@@ -37,7 +37,7 @@ namespace JuegoPrincipal.Scripts
                     if (persona.PidiendoTaxi) continue;
 
                     persona.PedirTaxi();
-                    _puntoSuerte = 0.2f;
+                    _puntoSuerte = 0.5f;
                     break;
                 }
             }
@@ -47,7 +47,7 @@ namespace JuegoPrincipal.Scripts
                 _puntoSuerte += 0.1f;
             }
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
             StartCoroutine(BuscarPasajero());
         }
 
@@ -55,8 +55,8 @@ namespace JuegoPrincipal.Scripts
         {
             Debug.Log("Pasajero Aceptado");
             TienePasajero = true;
-            _puntoSuerte = 0.2f;
-            
+            _puntoSuerte = 0.5f;
+
             var indiceParada = Random.Range(0, _puntosTaxis.Length);
             var parada = _puntosTaxis[indiceParada];
             var paradaPosition = parada.transform.position;

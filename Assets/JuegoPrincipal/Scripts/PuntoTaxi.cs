@@ -40,6 +40,7 @@ namespace JuegoPrincipal.Scripts
 
             var taxi = other.GetComponent<TaxiScript>();
             if (!taxi.TienePasajero) return;
+            if (taxi._objetivo != transform.position) return;
             taxi.BajarPasajero();
 
             var jugador = other.GetComponent<JugadorController>();

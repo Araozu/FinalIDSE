@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ public class JugadorController : MonoBehaviour
 
     private bool _movimientoActivado = true;
 
+    // Indica si el vehiculo puede retroceder.
+    private bool _retrocediendo = false;
+    
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -33,23 +37,39 @@ public class JugadorController : MonoBehaviour
         SetInputVector(vector2);
     }
 
+    private IEnumerator ActivarRetroceso()
+    {
+        yield return new WaitForSeconds(0.5f);
+        // Si en el periodo de tiempo no volvieron a acelerar, habilitar retroceso.
+        if (!_retrocediendo)
+        {
+            _retrocediendo = true;
+        }
+    }
+    
     private void ApplyEngineForce()
     {
         // Si la velocidad del auto es negativa, detenerlo
-        // TODO: Modo retroceso
+        // Tras 0.5s empezar a retroceder
         var forwardVelocity = transform.up * _rb.velocity;
         var esMovimientoHaciaAdelante = forwardVelocity.x > 0 || forwardVelocity.y > 0;
-        if (_acelerationInput <= 0 && !esMovimientoHaciaAdelante)
+        if (_acelerationInput <= 0 && !esMovimientoHaciaAdelante && !_retrocediendo)
         {
+            StartCoroutine(ActivarRetroceso());
             _rb.velocity = Vector2.zero;
             return;
+        }
+
+        if (forwardVelocity.x > 0)
+        {
+            _retrocediendo = false;
         }
 
         // Friccion
         _rb.drag = _acelerationInput == 0 ? 0.2f : 0;
 
-        // Hacer que el frenado sea mas fuerte
-        if (_acelerationInput < 0)
+        // Hacer que el frenado sea mas fuerte si no se esta retrocediendo
+        if (_acelerationInput < 0 && !_retrocediendo)
         {
             _acelerationInput *= 4f;
         }
@@ -66,6 +86,12 @@ public class JugadorController : MonoBehaviour
         var minSpeed = _rb.velocity.magnitude / 8;
         minSpeed = Mathf.Clamp01(minSpeed);
 
+        // Si el vehiculo retrocede, invertir la entrada
+        if (_retrocediendo)
+        {
+            _steeringInput *= -1;
+        }
+        
         // Hacer que el vehiculo gire menos al inicio, pero luego gire mas.
         if (_steeringInput == 0 && turnFactor >= 0.5f)
         {
