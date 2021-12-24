@@ -8,6 +8,7 @@ namespace JuegoPrincipal.Scripts.UI
     {
         private Text _text;
         private int tiempo = 60;
+        public Canvas canvasperdio;
 
         private void Start()
         {
@@ -20,6 +21,8 @@ namespace JuegoPrincipal.Scripts.UI
             if (tiempo <= 0)
             {
                 // TODO: Game over
+                canvasperdio.gameObject.SetActive(true); 
+
                 yield break;
             }
 
