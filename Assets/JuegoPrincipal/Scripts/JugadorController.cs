@@ -3,6 +3,7 @@ using System.Collections;
 using JuegoPrincipal.Scripts.UI;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JugadorController : MonoBehaviour
 {
@@ -24,15 +25,24 @@ public class JugadorController : MonoBehaviour
 
     private Puntaje _puntaje;
 
+    public Canvas doorCanvas;
+
     private void Start()
     {
         Application.targetFrameRate = 60;
         _rb = GetComponent<Rigidbody2D>();
         _puntaje = FindObjectOfType<Puntaje>();
+        
     }
 
     private void Update()
     {
+   
+        if(Input.GetKey(KeyCode.G)){ // if you press the E key
+ 
+             doorCanvas.gameObject.SetActive(true); // display or not the canvas (following the state of the bool)
+         }
+
         if (!_movimientoActivado) return;
 
         var vector2 = Vector2.zero;

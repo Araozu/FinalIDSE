@@ -6,8 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Portada.unity
+    guid: 317a94a961fd5c34c8b6497cceccbb72
+  - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 0a5220d10aa31774d86d5561c27558e9
+  - enabled: 1
+    path: Assets/Scenes/TaxiMapaCircuito.unity
+    guid: 3bba7bfd73957d44f827c301071de758
   - enabled: 1
     path: Assets/Scenes/CombiMapaCircuito.unity
     guid: 29b7aefbda8e374229e13aaa8b470276

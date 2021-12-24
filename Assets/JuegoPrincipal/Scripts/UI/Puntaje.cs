@@ -10,6 +10,8 @@ namespace JuegoPrincipal.Scripts.UI
         private Text _text;
         public int Puntos { get; private set; }
         private InfraccionScript _infraccionScript;
+        public Canvas canvasgano;
+        public Canvas canvasperdio;
     
         private void Start()
         {
@@ -23,12 +25,14 @@ namespace JuegoPrincipal.Scripts.UI
             if (Puntos <= 0)
             {
                 // TODO game over
+                canvasperdio.gameObject.SetActive(true); 
                 Debug.Log("game over");
                 return;
             }
             if (Puntos >= 100)
             {
                 // TODO pantalla ganador
+                canvasgano.gameObject.SetActive(true); 
                 Debug.Log("ganaste");
                 return;
             }
